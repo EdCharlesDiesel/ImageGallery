@@ -5032,11 +5032,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mokhe\\Downloads\\securing-aspnet-core-3-oauth2-openid-connect\\02\\demos\\start-end\\src\\ImageGallery.API\\ImageGallery.API.csproj",
+      "projectUniqueName": "C:\\x\\Finished\\ImageGallery\\src\\ImageGallery.API\\ImageGallery.API.csproj",
       "projectName": "ImageGallery.API",
-      "projectPath": "C:\\Users\\Mokhe\\Downloads\\securing-aspnet-core-3-oauth2-openid-connect\\02\\demos\\start-end\\src\\ImageGallery.API\\ImageGallery.API.csproj",
+      "projectPath": "C:\\x\\Finished\\ImageGallery\\src\\ImageGallery.API\\ImageGallery.API.csproj",
       "packagesPath": "C:\\Users\\Mokhe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mokhe\\Downloads\\securing-aspnet-core-3-oauth2-openid-connect\\02\\demos\\start-end\\src\\ImageGallery.API\\obj\\",
+      "outputPath": "C:\\x\\Finished\\ImageGallery\\src\\ImageGallery.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5055,9 +5055,10 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Mokhe\\Downloads\\securing-aspnet-core-3-oauth2-openid-connect\\02\\demos\\start-end\\src\\ImageGallery.Model\\ImageGallery.Model.csproj": {
-              "projectPath": "C:\\Users\\Mokhe\\Downloads\\securing-aspnet-core-3-oauth2-openid-connect\\02\\demos\\start-end\\src\\ImageGallery.Model\\ImageGallery.Model.csproj"
+            "C:\\x\\Finished\\ImageGallery\\src\\ImageGallery.Model\\ImageGallery.Model.csproj": {
+              "projectPath": "C:\\x\\Finished\\ImageGallery\\src\\ImageGallery.Model\\ImageGallery.Model.csproj"
             }
           }
         }
@@ -5070,6 +5071,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
@@ -5100,12 +5102,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[3.1.2, 3.1.2]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -5114,7 +5110,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

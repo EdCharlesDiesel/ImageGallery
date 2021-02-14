@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WQEUCgFGC4kMql22+vm+ZPunOP0bwb8U0aLryhP2UPJdwrMiUKea5dvPGCEZVoPRgSoGrGm6CdEE6UB/T7Gmcg==",
+  "dgSpecHash": "ZqLMwbnF0mtNPo8xx0QhUmQtob9GT71kYAMx34TYJGIIRUgTqR/zR7HO6OLAYMCc/b102PbJ/9KKZsciMQRJIg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mokhe\\Downloads\\securing-aspnet-core-3-oauth2-openid-connect\\02\\demos\\start-end\\src\\ImageGallery.Model\\ImageGallery.Model.csproj",
+  "projectFilePath": "C:\\x\\Finished\\ImageGallery\\src\\ImageGallery.Model\\ImageGallery.Model.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
