@@ -48,6 +48,20 @@
               "target": "Package",
               "version": "[3.1.0, )"
             },
+            "IdentityServer4.EntityFramework": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
             "Serilog": {
               "target": "Package",
               "version": "[2.9.0, )"
