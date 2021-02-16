@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,6 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 using System;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using IdentityModel;
 
 namespace ImageGallery.Client
 {
@@ -17,6 +21,8 @@ namespace ImageGallery.Client
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            //Remove the claims default mappings so that we can define our own.
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -31,33 +37,49 @@ namespace ImageGallery.Client
                 client.BaseAddress = new Uri("https://localhost:44366/");
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
-            });             
+            });
+            // create an HttpClient used for accessing the IDP
+            services.AddHttpClient("IDPClient", client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44318/");
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+            });
+
 
             services.AddAuthentication(options =>
             {
-                //By setting this value we can sign-in and sign-out of the scheme and read scheme related information. each application with it's own cookie.
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                // This referes to when you want to  configure OpenId Scheme.
                 options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
             })
-            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme) //Enables cookies handler and allows us to use 
-            // cookie based authentication. which all the info will be stored in the cookie.
-
-            //configures the OpenId connect authentication handler
+            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+            {
+                options.AccessDeniedPath = "/Authorization/AccessDenied";
+            })
             .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.Authority = "https://localhost:50010";
+                options.Authority = "https://localhost:44318/";
                 options.ClientId = "imagegalleryclient";
-                //Determines the flow used. Theres code, id_token, and id_token token.
-                options.ResponseType = "code";
-                options.UsePkce = true;
-                //options.CallbackPath = new PathString("...")                
-                options.Scope.Add("openid"); //user access token
-                options.Scope.Add("profile"); //user claims tokens
+                options.ResponseType = "code";                  
+                //the userId scope and the profile scope are not added because they're included by default.
+                options.Scope.Add("address");
+                options.Scope.Add("roles");
+                // Claims that are deleted are the ones explicity removed because they're included by default.
+                options.ClaimActions.DeleteClaim("sid");
+                options.ClaimActions.DeleteClaim("idp");
+                options.ClaimActions.DeleteClaim("s_hash");
+                options.ClaimActions.DeleteClaim("auth_time");
+                options.ClaimActions.MapUniqueJsonKey("role", "role");
                 options.SaveTokens = true;
                 options.ClientSecret = "secret";
                 options.GetClaimsFromUserInfoEndpoint = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    NameClaimType = JwtClaimTypes.GivenName,
+                    RoleClaimType = JwtClaimTypes.Role,
+                    
+                };
             });
 
 
